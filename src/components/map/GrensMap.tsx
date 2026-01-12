@@ -1,5 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
+import { useEffect, useState } from 'react'
+import { businessService, type Business } from '../../services/businesses'
 
 // Fix voor Leaflet icon bug in React
 import icon from 'leaflet/dist/images/marker-icon.png'
@@ -15,14 +17,26 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function GrensMap() {
-    // Coördinaten voor centrum grensgebied (ongeveer Arnhem/Nijmegen hoogte)
-    const centerPosition: [number, number] = [51.9, 6.2]
+    const [businesses, setBusinesses] = useState<Business[]>([])
+    // Focus op Emmerich/Elten regio
+    const centerPosition: [number, number] = [51.85, 6.20]
+
+    useEffect(() => {
+        const fetchBusinesses = async () => {
+            const { data } = await businessService.getAll()
+            if (data) {
+                setBusinesses(data)
+            }
+        }
+
+        fetchBusinesses()
+    }, [])
 
     return (
         <div style={{ height: '500px', width: '100%', borderRadius: '8px', overflow: 'hidden' }}>
             <MapContainer
                 center={centerPosition}
-                zoom={9}
+                zoom={12} // Iets meer ingezoomd voor deze regio
                 style={{ height: '100%', width: '100%' }}
             >
                 <TileLayer
@@ -30,21 +44,22 @@ export default function GrensMap() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {/* Voorbeeld marker (Gronau) */}
-                <Marker position={[52.21, 7.02]}>
-                    <Popup>
-                        <b>Winkelcentrum Gronau</b><br />
-                        Hier kun je goedkoop tanken!
-                    </Popup>
-                </Marker>
-
-                {/* Voorbeeld marker (Kleve) */}
-                <Marker position={[51.78, 6.13]}>
-                    <Popup>
-                        <b>Restaurant Der Grieche</b><br />
-                        Beste gyros in de regio.
-                    </Popup>
-                </Marker>
+                {businesses.map((business) => (
+                    business.latitude && business.longitude ? (
+                        <Marker
+                            key={business.id}
+                            position={[Number(business.latitude), Number(business.longitude)]}
+                        >
+                            <Popup>
+                                <strong>{business.name}</strong><br />
+                                {business.category}
+                                {business.cuisine_type && ` - ${business.cuisine_type}`}<br />
+                                {business.address}, {business.city}<br />
+                                {business.phone && <small>📞 {business.phone}</small>}
+                            </Popup>
+                        </Marker>
+                    ) : null
+                ))}
             </MapContainer>
         </div>
     )
