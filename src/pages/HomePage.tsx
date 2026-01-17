@@ -1,31 +1,31 @@
 import GrensMap from '../components/map/GrensMap'
-import './HomePage.css' // Importeer de CSS file
+import './HomePage.css'
 
 export default function HomePage() {
     return (
-        <div className="home-container">
-            <header className="home-header">
-                <h1>🇩🇪 Grensgebied Voordeel 🇳🇱</h1>
+        <main className="container">
+            <section className="home__upper-section">
+                <h1>🇩🇪 BURO GRENSTOERISME 🇳🇱</h1>
                 <p>Ontdek de beste winkels, restaurants en tankstations net over de grens.</p>
-            </header>
+            </section>
 
-            <div className="map-section">
-                <GrensMap />
-            </div>
-
-            <div className="category-grid">
-                <div className="category-card">
+            <ul className="home__categories-list">
+                <li className="home__categories-item">
                     <h3>🛒 Supermarkten</h3>
-                </div>
+                </li>
 
-                <div className="category-card">
+                <li className="home__categories-item">
                     <h3>⛽ Tankstations</h3>
-                </div>
+                </li>
 
-                <div className="category-card">
+                <li className="home__categories-item">
                     <h3>🍽️ Restaurants</h3>
-                </div>
-            </div>
-        </div>
+                </li>
+            </ul>
+
+            <section className="home__map-section">
+                <GrensMap />
+            </section>
+        </main>
     )
 }
