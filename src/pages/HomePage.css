@@ -31,12 +31,20 @@
 .home__categories-item {
     flex: 1 1 150px;
     padding: 30px;
-    border: 1px solid #e0e0e0;
+    border: 2px solid transparent;
     border-radius: 12px;
     text-align: center;
     background-color: white;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home__categories-item:active {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,123,255,0.2);
+    color: var(--white);
 }
 
 .home__categories-item:hover {

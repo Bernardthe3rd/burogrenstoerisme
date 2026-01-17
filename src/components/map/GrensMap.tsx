@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
-import { useEffect, useState } from 'react'
-import { businessService, type Business } from '../../services/businesses'
+import { type Business } from '../../services/businesses'
 
 // Fix voor Leaflet icon bug in React
 import icon from 'leaflet/dist/images/marker-icon.png'
@@ -16,21 +15,13 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default function GrensMap() {
-    const [businesses, setBusinesses] = useState<Business[]>([])
+interface GrensMapProps {
+    businesses: Business[]
+}
+
+export default function GrensMap({ businesses }: GrensMapProps) {
     // Focus op Emmerich/Elten regio
     const centerPosition: [number, number] = [51.85, 6.20]
-
-    useEffect(() => {
-        const fetchBusinesses = async () => {
-            const { data } = await businessService.getAll()
-            if (data) {
-                setBusinesses(data)
-            }
-        }
-
-        fetchBusinesses()
-    }, [])
 
     return (
         <div style={{ height: '500px', width: '100%', borderRadius: '8px', overflow: 'hidden' }}>
