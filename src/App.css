@@ -1,7 +1,6 @@
 .container {
-  max-width: 1440px;
-  margin-inline: auto;
-  padding-inline: 2rem;
+  margin-left: 250px;
+  width: calc(100% - 250px);
 }
 
 .container__div {

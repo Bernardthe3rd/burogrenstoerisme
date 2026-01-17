@@ -2,7 +2,6 @@
 .home__upper-section {
     text-align: center;
     margin: 50px auto;
-    border: 5px solid var(--background-clr-first);
 
     display: flex;
     flex-direction: column;
@@ -16,12 +15,10 @@
     max-width: 1200px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 8px;
-    border: 5px solid var(--background-clr-first);
 }
 
 /* Categorieën Grid met Flexbox fallback */
 .home__categories-list {
-    border: 5px solid var(--background-clr-first);
     margin: 50px auto;
     max-width: 1200px;
     display: flex;

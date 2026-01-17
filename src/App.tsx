@@ -8,6 +8,8 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import AdminDashboard from './pages/AdminDashboard'
 import StudentPortal from './pages/StudentPortal'
+import Navbar from "./components/layout/Navbar.tsx";
+import "./App.css"
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -22,6 +24,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
