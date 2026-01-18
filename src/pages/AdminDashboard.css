@@ -171,6 +171,13 @@
     border-color: #ccc;
 }
 
+/* Factuur status kleuren */
+.badge.draft { background: #e0e0e0; color: #616161; }
+.badge.sent { background: #e3f2fd; color: #1976d2; }
+.badge.paid { background: #e8f5e9; color: #2e7d32; }
+.badge.overdue { background: #ffebee; color: #c62828; }
+
+
 /* Simpele animaties */
 @keyframes fadeIn {
     from { opacity: 0; }

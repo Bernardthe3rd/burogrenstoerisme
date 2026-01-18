@@ -200,41 +200,31 @@ export type Database = {
       }
       invoices: {
         Row: {
-          advertiser_id: string | null
-          amount: number
-          created_at: string | null
-          due_date: string | null
           id: string
+          created_at: string
+          advertiser_id: string | null
           invoice_number: string
-          status: string | null
+          amount: number
+          status: 'draft' | 'sent' | 'paid' | 'overdue'
+          due_date: string | null
         }
         Insert: {
-          advertiser_id?: string | null
-          amount: number
-          created_at?: string | null
-          due_date?: string | null
           id?: string
+          created_at?: string
+          advertiser_id?: string | null
           invoice_number: string
-          status?: string | null
+          amount: number
+          status?: 'draft' | 'sent' | 'paid' | 'overdue'
+          due_date?: string | null
         }
         Update: {
-          advertiser_id?: string | null
-          amount?: number
-          created_at?: string | null
-          due_date?: string | null
           id?: string
+          advertiser_id?: string | null
           invoice_number?: string
-          status?: string | null
+          amount?: number
+          status?: 'draft' | 'sent' | 'paid' | 'overdue'
+          due_date?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "invoices_advertiser_id_fkey"
-            columns: ["advertiser_id"]
-            isOneToOne: false
-            referencedRelation: "advertisers"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       profiles: {
         Row: {
