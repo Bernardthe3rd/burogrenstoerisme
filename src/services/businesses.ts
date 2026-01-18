@@ -14,6 +14,15 @@ export const businessService = {
         return { data, error }
     },
 
+    async getById(id: string) {
+        const { data, error } = await supabase
+        .from('businesses')
+        .select('*')
+            .eq("id", id)
+            .single()
+        return { data, error }
+    },
+
     // (Optioneel) Filter op categorie
     async getByCategory(category: string) {
         const { data, error } = await supabase

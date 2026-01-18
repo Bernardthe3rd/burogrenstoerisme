@@ -1,6 +1,7 @@
 .container {
   margin-left: 200px;
   width: calc(100% - 200px);
+  padding: 2rem;
 }
 
 .container__div {

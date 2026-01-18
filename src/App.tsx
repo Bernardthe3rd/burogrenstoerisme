@@ -8,7 +8,8 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import AdminDashboard from './pages/AdminDashboard'
 import StudentPortal from './pages/StudentPortal'
-import Navbar from "./components/layout/Navbar.tsx";
+import Navbar from "./components/layout/Navbar.tsx"
+import BusinessDetailPage from './pages/BusinessDetailPage'
 import "./App.css"
 
 function App() {
@@ -27,8 +28,8 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/business/:id" element={<BusinessDetailPage />} />
                 <Route path="/login" element={<LoginPage />} />
-
                 <Route
                     path="/admin/*"
                     element={

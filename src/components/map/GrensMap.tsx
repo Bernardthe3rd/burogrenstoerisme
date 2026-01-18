@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import { type Business } from '../../services/businesses'
+import { Link } from 'react-router-dom'
 
 // Fix voor Leaflet icon bug in React
 import icon from 'leaflet/dist/images/marker-icon.png'
@@ -47,6 +48,9 @@ export default function GrensMap({ businesses }: GrensMapProps) {
                                 {business.cuisine_type && ` - ${business.cuisine_type}`}<br />
                                 {business.address}, {business.city}<br />
                                 {business.phone && <small>📞 {business.phone}</small>}
+                                <Link to={`/business/${business.id}`} style={{display: 'block', marginTop: '5px', color: '#007bff'}}>
+                                    Meer info
+                                </Link>
                             </Popup>
                         </Marker>
                     ) : null
