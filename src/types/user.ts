@@ -14,9 +14,3 @@ export interface User {
     role: UserRole
     created_at: string
 }
-
-export interface Student extends User {
-    commission_rate: number
-    can_view_correspondence: boolean
-    can_view_financials: boolean
-}

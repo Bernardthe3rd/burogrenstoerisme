@@ -259,32 +259,38 @@ export type Database = {
       }
       students: {
         Row: {
+          id: string
+          first_name: string
+          last_name: string
+          email: string | null
+          phone: string | null
+          commission_rate: number | null
           can_view_correspondence: boolean | null
           can_view_financials: boolean | null
-          commission_rate: number | null
-          id: string
+          created_at?: string
         }
         Insert: {
+          id?: string
+          first_name: string
+          last_name: string
+          email?: string | null
+          phone?: string | null
+          commission_rate?: number | null
           can_view_correspondence?: boolean | null
           can_view_financials?: boolean | null
-          commission_rate?: number | null
-          id: string
+          created_at?: string
         }
         Update: {
+          id?: string
+          first_name?: string
+          last_name?: string
+          email?: string | null
+          phone?: string | null
+          commission_rate?: number | null
           can_view_correspondence?: boolean | null
           can_view_financials?: boolean | null
-          commission_rate?: number | null
-          id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "students_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {
