@@ -16,7 +16,7 @@ function App() {
     const { loadUser, loading } = useAuthStore()
 
     useEffect(() => {
-        loadUser()
+        loadUser().catch(console.error)
     }, [loadUser])
 
     if (loading) {
