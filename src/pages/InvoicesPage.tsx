@@ -52,7 +52,6 @@ export default function InvoicesPage() {
             if (editingId) {
                 const { error } = await invoiceService.update(editingId, formData)
                 if (error) throw error
-                // Even opnieuw fetchen is makkelijker hier vanwege de join (advertiser naam)
                 fetchData()
             } else {
                 const { error } = await invoiceService.create(formData)
@@ -158,7 +157,7 @@ export default function InvoicesPage() {
                                     <select
                                         className="modal-input"
                                         value={formData.status}
-                                        onChange={e => setFormData({...formData, status: e.target.value as any})}
+                                        onChange={e => setFormData({...formData, status: e.target.value as 'draft' | 'sent' | 'paid' | 'overdue'})}
                                     >
                                         <option value="draft">Concept</option>
                                         <option value="sent">Verzonden</option>

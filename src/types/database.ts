@@ -225,6 +225,15 @@ export type Database = {
           status?: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "invoices_advertiser_id_fkey"
+            columns: ["advertiser_id"]
+            isOneToOne: false
+            referencedRelation: "advertisers"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       profiles: {
         Row: {

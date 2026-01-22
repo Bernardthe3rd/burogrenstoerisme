@@ -24,7 +24,7 @@ export const invoiceService = {
 
         // Type casting forceren we hier veilig
         const typedData = data as unknown as InvoiceWithAdvertiser[] | null
-        return {  typedData, error }
+        return { data: typedData, error }
     },
 
     // 2. Haal één factuur op
@@ -36,7 +36,7 @@ export const invoiceService = {
             .single()
 
         const typedData = data as unknown as InvoiceWithAdvertiser | null
-        return {  typedData, error }
+        return { data: typedData, error }
     },
 
     // 3. Aanmaken
