@@ -26,7 +26,7 @@ export default function LoginPage() {
     }
 
     return (
-        <div>
+        <div className="container">
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <input

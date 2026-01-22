@@ -8,24 +8,29 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import AdminDashboard from './pages/AdminDashboard'
 import StudentPortal from './pages/StudentPortal'
+import Navbar from "./components/layout/Navbar.tsx"
+import BusinessDetailPage from './pages/BusinessDetailPage'
+import "./App.css"
+import StudentsPage from "./pages/StudentsPage.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
 
     useEffect(() => {
-        loadUser()
+        loadUser().catch(console.error)
     }, [loadUser])
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div className="loading">Loading...</div>
     }
 
     return (
         <BrowserRouter>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/business/:id" element={<BusinessDetailPage />} />
                 <Route path="/login" element={<LoginPage />} />
-
                 <Route
                     path="/admin/*"
                     element={
@@ -34,6 +39,12 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
+                <Route path="/students" element={
+                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                        <StudentsPage/>
+                    </ProtectedRoute>
+                }/>
 
                 <Route
                     path="/student/*"

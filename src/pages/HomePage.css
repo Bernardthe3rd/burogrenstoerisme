@@ -1,0 +1,65 @@
+/* Header sectie */
+.home__upper-section {
+    text-align: center;
+    margin: 50px auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Map sectie */
+.home__map-section {
+    margin: 10px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Categorieën Grid met Flexbox fallback */
+.home__categories-list {
+    margin: 50px auto;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.home__categories-item {
+    flex: 1 1 150px;
+    padding: 30px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home__categories-item:active {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,123,255,0.2);
+    color: var(--white);
+}
+
+.home__categories-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-color: #ccc;
+}
+
+/* Mobiele aanpassingen */
+@media (max-width: 768px) {
+    .home-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .category-card {
+        flex: 1 1 100%; /* Volledige breedte op mobiel */
+    }
+}
