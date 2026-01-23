@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 .env*.local
+
+#password test student > student123
+#password test admin > admin

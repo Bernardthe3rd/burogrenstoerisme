@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { studentDashboardService, type StudentStats } from '../services/studentDashboard'
 import { studentService } from '../services/students'
 import './StudentDashboard.css'
-import '../components/AdminDashboard.css'
+import './AdminDashboard.css'
 
 // We definiëren hier lokaal even wat types om 'any' te vermijden
 interface DashboardAdvertiser {
