@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { studentDashboardService, type StudentStats } from '../services/studentDashboard'
 import { studentService } from '../services/students'
+import { correspondenceService, type CorrespondenceWithAdvertiser } from '../services/correspondence'
 import './StudentDashboard.css'
 import './AdminDashboard.css'
 
@@ -26,12 +27,17 @@ export default function StudentDashboard() {
     const [loading, setLoading] = useState(true)
     const [advertisers, setAdvertisers] = useState<DashboardAdvertiser[]>([])
     const [invoices, setInvoices] = useState<DashboardInvoice[]>([])
+    const [canViewFinancials, setCanViewFinancials] = useState(false)
     const [stats, setStats] = useState<StudentStats>({
         totalCommission: 0,
         activeAdvertisers: 0,
         pendingCommission: 0
     })
     const [commissionRate, setCommissionRate] = useState(0)
+
+    const [messages, setMessages] = useState<CorrespondenceWithAdvertiser[]>([])
+    const [canViewMessages, setCanViewMessages] = useState(false) // Permissie check
+
 
     useEffect(() => {
 
@@ -52,6 +58,9 @@ export default function StudentDashboard() {
                 const dataOneStudent = await studentService.getById(studentId)
                 const studentData = dataOneStudent.data
 
+                setCanViewFinancials(studentData?.can_view_financials || false)
+                const canViewMsg = studentData?.can_view_correspondence || false
+                setCanViewMessages(canViewMsg)
                 // Veilige fallback naar 0 als commission_rate null is
                 const rate = studentData?.commission_rate || 0
                 setCommissionRate(rate)
@@ -76,6 +85,12 @@ export default function StudentDashboard() {
                     const statistics = studentDashboardService.calculateStats(myInvoices, rate)
                     statistics.activeAdvertisers = advRes.data?.length || 0
                     setStats(statistics)
+                }
+
+                if (canViewMsg) {
+                    const msgData = await correspondenceService.getMyMessages()
+                    const message = msgData.typedData;
+                    if (message) setMessages(message)
                 }
 
             } catch (error) {
@@ -104,12 +119,12 @@ export default function StudentDashboard() {
             <div className="kpi-grid">
                 <div className="kpi-card green">
                     <h3>Gerealiseerd</h3>
-                    <p className="kpi-amount">€ {stats.totalCommission.toFixed(2)}</p>
+                    <p className="kpi-amount">{canViewFinancials ? `€ ${stats.totalCommission.toFixed(2)}` : '***'}</p>
                     <small>Uitbetaald of Betaald door klant</small>
                 </div>
                 <div className="kpi-card yellow">
                     <h3>Verwacht</h3>
-                    <p className="kpi-amount">€ {stats.pendingCommission.toFixed(2)}</p>
+                    <p className="kpi-amount">{canViewFinancials ? `€ ${stats.pendingCommission.toFixed(2)}` : '***'}</p>
                     <small>Facturen nog openstaand</small>
                 </div>
                 <div className="kpi-card blue">
@@ -182,6 +197,30 @@ export default function StudentDashboard() {
                     </div>
                 )}
             </div>
+
+            {canViewMessages && (
+                <div className="dashboard-section">
+                    <h2>Berichten & Updates</h2>
+                    {messages.length === 0 ? <p>Geen berichten gevonden.</p> : (
+                        <div className="message-list">
+                            {messages.map(msg => (
+                                <div key={msg.id} className="message-item">
+                                    <div className="message-header">
+                                        <span className="message-subject">{msg.subject}</span>
+                                        <span className="message-date">
+                                        {new Date(msg.created_at || '').toLocaleDateString()}
+                                    </span>
+                                    </div>
+                                    <div className="message-meta">
+                                        Betreft: <strong>{msg.advertisers?.company_name}</strong>
+                                    </div>
+                                    <p className="message-body">{msg.message}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     )
 }

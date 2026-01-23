@@ -88,6 +88,49 @@
     padding-bottom: 10px;
 }
 
+/* Correspondentie Styles */
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-item {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.message-subject {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.message-date {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+.message-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.message-body {
+    margin: 0;
+    color: #495057;
+    line-height: 1.5;
+}
+
 /* Tabel aanpassingen specifiek voor dit dashboard */
 .commission-cell {
     font-weight: 600;
