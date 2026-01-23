@@ -12,6 +12,7 @@ import Navbar from "./components/layout/Navbar.tsx"
 import BusinessDetailPage from './pages/BusinessDetailPage'
 import "./App.css"
 import StudentsPage from "./pages/StudentsPage.tsx";
+import StudentDashboard from "./pages/StudentDashboard.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -45,6 +46,12 @@ function App() {
                         <StudentsPage/>
                     </ProtectedRoute>
                 }/>
+
+                <Route path="/student" element={
+                    <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                        <StudentDashboard />
+                    </ProtectedRoute>
+                } />
 
                 <Route
                     path="/student/*"
