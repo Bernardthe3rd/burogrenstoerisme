@@ -13,6 +13,7 @@ import BusinessDetailPage from './pages/BusinessDetailPage'
 import "./App.css"
 import StudentsPage from "./pages/StudentsPage.tsx";
 import StudentDashboard from "./pages/StudentDashboard.tsx";
+import CorrespondencePage from './pages/CorrespondencePage.tsx';
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -40,6 +41,12 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
+                <Route path="/correspondence" element={
+                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                        <CorrespondencePage />
+                    </ProtectedRoute>
+                } />
 
                 <Route path="/students" element={
                     <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
