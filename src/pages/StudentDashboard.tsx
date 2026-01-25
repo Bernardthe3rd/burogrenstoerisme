@@ -176,7 +176,7 @@ export default function StudentDashboard() {
                                 <th>Factuur</th>
                                 <th>Bedrag</th>
                                 <th>Status</th>
-                                <th>Mijn Deel ({commissionRate}%)</th>
+                                {canViewFinancials && <th>Mijn Deel ({commissionRate}%)</th>}
                             </tr>
                             </thead>
                             <tbody>
@@ -187,9 +187,10 @@ export default function StudentDashboard() {
                                     <td>{inv.invoice_number}</td>
                                     <td>€ {inv.amount.toFixed(2)}</td>
                                     <td><span className={`badge ${inv.status}`}>{inv.status}</span></td>
+                                    {canViewFinancials ? (
                                     <td className={`commission-cell ${inv.status === 'paid' ? 'text-success' : 'text-muted'}`}>
                                         € {(inv.amount * (commissionRate / 100)).toFixed(2)}
-                                    </td>
+                                    </td>) : null}
                                 </tr>
                             ))}
                             </tbody>

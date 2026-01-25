@@ -7,7 +7,6 @@ import { UserRole } from './types/user'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import BusinessesPage from './pages/BusinessesPage.tsx'
-import StudentPortal from './pages/StudentPortal'
 import Navbar from "./components/layout/Navbar.tsx"
 import BusinessDetailPage from './pages/BusinessDetailPage'
 import "./App.css"
@@ -78,15 +77,6 @@ function App() {
                         <StudentDashboard />
                     </ProtectedRoute>
                 } />
-
-                <Route
-                    path="/student/*"
-                    element={
-                        <ProtectedRoute allowedRoles={[UserRole.STUDENT, UserRole.ADMIN]}>
-                            <StudentPortal />
-                        </ProtectedRoute>
-                    }
-                />
 
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
