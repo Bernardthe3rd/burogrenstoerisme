@@ -50,6 +50,16 @@ export default function AdminDashboard() {
                     <p>Stuur updates en berichten naar je adverteerders.</p>
                 </div>
 
+                {/* KAART 5: Invoices */}
+                <div
+                    className="dashboard-card"
+                    onClick={() => navigate('/admin/invoices')}
+                >
+                    <div className="card-icon">✉️</div>
+                    <h3>Facturen</h3>
+                    <p>Facturen overzicht.</p>
+                </div>
+
             </div>
         </div>
     )

@@ -207,6 +207,7 @@ export type Database = {
           amount: number
           status: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date: string | null
+          description: string
         }
         Insert: {
           id?: string
@@ -216,6 +217,7 @@ export type Database = {
           amount: number
           status?: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date?: string | null
+          description?: string
         }
         Update: {
           id?: string
@@ -224,6 +226,7 @@ export type Database = {
           amount?: number
           status?: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date?: string | null
+          description?: string
         }
         Relationships: [
           {

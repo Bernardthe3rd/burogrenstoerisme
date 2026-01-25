@@ -16,7 +16,7 @@ export const studentService = {
             .from('students')
             .select('*')
             // Als je kolom 'last_name' nog niet bestaat, pas dit dan aan naar 'created_at'
-            .order('created_at', { ascending: false })
+            .order('last_name', { ascending: false })
 
         return { data, error }
     },
