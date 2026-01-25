@@ -1,8 +1,8 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { correspondenceService } from '../services/correspondence'
 import { advertiserService, type Advertiser } from '../services/advertisers'
-import './CorrespondencePage.css' // Eigen CSS
-import '../components/AdminDashboard.css' // Basis styles (knoppen, tabellen, modal overlay)
+import './CorrespondencePage.css'
+import '../components/AdminDashboard.css'
 
 interface CorrespondenceMessage {
     id: string
@@ -25,6 +25,9 @@ export default function CorrespondencePage() {
     const [messages, setMessages] = useState<CorrespondenceMessage[]>([])
     const [advertisers, setAdvertisers] = useState<Advertiser[]>([])
 
+    // Ref om bij te houden of de component actief is (voorkomt memory leaks en linter errors)
+    const isMounted = useRef(true)
+
     // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [formData, setFormData] = useState<MessageForm>({
@@ -33,6 +36,11 @@ export default function CorrespondencePage() {
         advertiser_id: ''
     })
 
+    // Cleanup voor de mounted ref
+    useEffect(() => {
+        return () => { isMounted.current = false }
+    }, [])
+
     const fetchData = useCallback(async () => {
         try {
             const [msgRes, advRes] = await Promise.all([
@@ -40,25 +48,33 @@ export default function CorrespondencePage() {
                 advertiserService.getAll()
             ])
 
-            if (msgRes.data) setMessages(msgRes.data as unknown as CorrespondenceMessage[])
-            if (advRes.data) setAdvertisers(advRes.data)
+            // Check of component nog bestaat voordat we state updaten
+            if (isMounted.current) {
+                if (msgRes.data) setMessages(msgRes.data as unknown as CorrespondenceMessage[])
+                if (advRes.data) setAdvertisers(advRes.data)
+            }
 
         } catch (error) {
             console.error("Fout bij ophalen data", error)
+        } finally {
+            if (isMounted.current) {
+                setLoading(false)
+            }
         }
-        setLoading(false)
-    }, []) // Lege array = functie wordt maar 1x aangemaakt bij mount
+    }, [])
 
     useEffect(() => {
         fetchData().catch(console.error)
     }, [fetchData])
 
     const handleDelete = async (id: string) => {
+        // FIX: window. toevoegen
         if (!window.confirm('Weet je zeker dat je dit bericht wilt verwijderen?')) return
 
         const { error } = await correspondenceService.delete(id)
         if (error) {
-            alert('Fout: ' + error.message)
+            // FIX: window. toevoegen
+            window.alert('Fout: ' + error.message)
         } else {
             setMessages(prev => prev.filter(m => m.id !== id))
         }
@@ -66,9 +82,10 @@ export default function CorrespondencePage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (!formData.advertiser_id) return alert('Kies een ontvanger (bedrijf)')
-        if (!formData.subject) return alert('Onderwerp is verplicht')
-        if (!formData.message) return alert('Bericht mag niet leeg zijn')
+        // FIX: window. toevoegen
+        if (!formData.advertiser_id) return window.alert('Kies een ontvanger (bedrijf)')
+        if (!formData.subject) return window.alert('Onderwerp is verplicht')
+        if (!formData.message) return window.alert('Bericht mag niet leeg zijn')
 
         setLoading(true)
 
@@ -77,7 +94,7 @@ export default function CorrespondencePage() {
 
             if (error) {
                 setLoading(false)
-                alert('Error: ' + error.message)
+                window.alert('Error: ' + error.message)
                 return
             }
 
@@ -87,12 +104,13 @@ export default function CorrespondencePage() {
 
         } catch (error) {
             const msg = (error as {message: string}).message || 'Kon bericht niet versturen'
-            alert('Error: ' + msg)
+            window.alert('Error: ' + msg)
+            setLoading(false)
         }
     }
 
     return (
-        <div className="container">
+        <div className="container correspondence-container">
             <div className="admin-header">
                 <h1>Berichtencentrum</h1>
                 <button
