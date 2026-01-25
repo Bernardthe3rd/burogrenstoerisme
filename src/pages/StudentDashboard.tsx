@@ -3,7 +3,7 @@ import { studentDashboardService, type StudentStats } from '../services/studentD
 import { studentService } from '../services/students'
 import { correspondenceService, type CorrespondenceWithAdvertiser } from '../services/correspondence'
 import './StudentDashboard.css'
-import './AdminDashboard.css'
+import './BusinessesPage.css'
 
 // We definiëren hier lokaal even wat types om 'any' te vermijden
 interface DashboardAdvertiser {

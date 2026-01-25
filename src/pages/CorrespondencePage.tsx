@@ -1,17 +1,16 @@
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState } from 'react' // Geen useCallback/useRef meer nodig
 import { correspondenceService } from '../services/correspondence'
 import { advertiserService, type Advertiser } from '../services/advertisers'
 import './CorrespondencePage.css'
-import '../components/AdminDashboard.css'
+import './BusinessesPage.css'
 
+// Interfaces blijven hetzelfde...
 interface CorrespondenceMessage {
     id: string
     created_at: string
     subject: string
     message: string
-    advertisers: {
-        company_name: string
-    } | null
+    advertisers: { company_name: string } | null
 }
 
 interface MessageForm {
@@ -25,10 +24,9 @@ export default function CorrespondencePage() {
     const [messages, setMessages] = useState<CorrespondenceMessage[]>([])
     const [advertisers, setAdvertisers] = useState<Advertiser[]>([])
 
-    // Ref om bij te houden of de component actief is (voorkomt memory leaks en linter errors)
-    const isMounted = useRef(true)
+    // TRUC: Deze teller gebruiken we om de useEffect opnieuw te laten vuren
+    const [refreshKey, setRefreshKey] = useState(0)
 
-    // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [formData, setFormData] = useState<MessageForm>({
         subject: '',
@@ -36,76 +34,66 @@ export default function CorrespondencePage() {
         advertiser_id: ''
     })
 
-    // Cleanup voor de mounted ref
+    // DE SIMPELE USE-EFFECT
     useEffect(() => {
-        return () => { isMounted.current = false }
-    }, [])
+        const loadData = async () => {
+            setLoading(true)
+            try {
+                const [msgRes, advRes] = await Promise.all([
+                    correspondenceService.getAllAdmin(),
+                    advertiserService.getAll()
+                ])
 
-    const fetchData = useCallback(async () => {
-        try {
-            const [msgRes, advRes] = await Promise.all([
-                correspondenceService.getAllAdmin(),
-                advertiserService.getAll()
-            ])
-
-            // Check of component nog bestaat voordat we state updaten
-            if (isMounted.current) {
                 if (msgRes.data) setMessages(msgRes.data as unknown as CorrespondenceMessage[])
-                if (advRes.data) setAdvertisers(advRes.data)
-            }
-
-        } catch (error) {
-            console.error("Fout bij ophalen data", error)
-        } finally {
-            if (isMounted.current) {
+                if (advRes.data) setAdvertisers(advRes.data as unknown as Advertiser[])
+            } catch (error) {
+                console.error("Fout bij ophalen data", error)
+            } finally {
                 setLoading(false)
             }
         }
-    }, [])
 
-    useEffect(() => {
-        fetchData().catch(console.error)
-    }, [fetchData])
+        loadData().catch(console.error)
+    }, [refreshKey]) // <--- Hier zit de magie: als refreshKey verandert, draait dit opnieuw
 
     const handleDelete = async (id: string) => {
-        // FIX: window. toevoegen
         if (!window.confirm('Weet je zeker dat je dit bericht wilt verwijderen?')) return
 
         const { error } = await correspondenceService.delete(id)
         if (error) {
-            // FIX: window. toevoegen
             window.alert('Fout: ' + error.message)
         } else {
+            // Lokaal updaten is sneller dan opnieuw fetchen
             setMessages(prev => prev.filter(m => m.id !== id))
         }
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        // FIX: window. toevoegen
         if (!formData.advertiser_id) return window.alert('Kies een ontvanger (bedrijf)')
         if (!formData.subject) return window.alert('Onderwerp is verplicht')
         if (!formData.message) return window.alert('Bericht mag niet leeg zijn')
 
-        setLoading(true)
+        // We hoeven hier loading niet per se aan te zetten, de useEffect doet dat zo meteen ook
 
         try {
             const { error } = await correspondenceService.create(formData)
 
             if (error) {
-                setLoading(false)
                 window.alert('Error: ' + error.message)
                 return
             }
 
-            await fetchData()
+            // SUCCES: Sluit modal, reset formulier EN trigger een refresh
             setIsModalOpen(false)
             setFormData({ subject: '', message: '', advertiser_id: '' })
+
+            // Dit zorgt ervoor dat de useEffect hierboven opnieuw gaat draaien
+            setRefreshKey(old => old + 1)
 
         } catch (error) {
             const msg = (error as {message: string}).message || 'Kon bericht niet versturen'
             window.alert('Error: ' + msg)
-            setLoading(false)
         }
     }
 

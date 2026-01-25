@@ -6,7 +6,7 @@ import { UserRole } from './types/user'
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
-import AdminDashboard from './pages/AdminDashboard'
+import BusinessesPage from './pages/BusinessesPage.tsx'
 import StudentPortal from './pages/StudentPortal'
 import Navbar from "./components/layout/Navbar.tsx"
 import BusinessDetailPage from './pages/BusinessDetailPage'
@@ -14,6 +14,8 @@ import "./App.css"
 import StudentsPage from "./pages/StudentsPage.tsx";
 import StudentDashboard from "./pages/StudentDashboard.tsx";
 import CorrespondencePage from './pages/CorrespondencePage.tsx';
+import AdvertisersPage from "./pages/AdvertisersPage.tsx";
+import AdminDashboard from "./pages/AdminDashboard.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -33,22 +35,32 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/business/:id" element={<BusinessDetailPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/admin" element={
+                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                        <AdminDashboard/>
+                    </ProtectedRoute>
+                }/>
                 <Route
-                    path="/admin/*"
+                    path="/admin/businesses"
                     element={
                         <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                            <AdminDashboard />
+                            <BusinessesPage />
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/admin/advertisers" element={
+                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                        <AdvertisersPage/>
+                    </ProtectedRoute>
+                }/>
 
-                <Route path="/correspondence" element={
+                <Route path="/admin/correspondence" element={
                     <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
                         <CorrespondencePage />
                     </ProtectedRoute>
                 } />
 
-                <Route path="/students" element={
+                <Route path="/admin/students" element={
                     <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
                         <StudentsPage/>
                     </ProtectedRoute>
