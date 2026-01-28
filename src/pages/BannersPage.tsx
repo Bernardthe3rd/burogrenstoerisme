@@ -13,6 +13,7 @@ export default function BannersPage() {
     const [linkUrl, setLinkUrl] = useState('')
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [uploading, setUploading] = useState(false)
+    const [manualImgUrl, setManualImgUrl] = useState('')
 
     const [refreshKey, setRefreshKey] = useState(0)
 
@@ -35,16 +36,21 @@ export default function BannersPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (!selectedFile || !title) return alert("Kies een plaatje en titel!")
+
+        if (!selectedFile && !manualImgUrl) {
+            return alert("Je moet óf een bestand kiezen, óf een URL invullen.")
+        }
+        if (!title) return alert("Titel is verplicht.")
 
         setUploading(true)
         try {
-            await bannerService.create(title, linkUrl, selectedFile)
+            await bannerService.create(title, linkUrl, selectedFile, manualImgUrl)
 
             // Reset & Close
             setIsModalOpen(false)
             setTitle('')
             setLinkUrl('')
+            setManualImgUrl('')
             setSelectedFile(null)
             setRefreshKey(old => old + 1)
 
@@ -102,13 +108,25 @@ export default function BannersPage() {
                                     className="modal-input"
                                     accept="image/*"
                                     onChange={handleFileChange}
-                                    required
                                 />
                                 <small style={{color:'#666'}}>Aanbevolen formaat: 1200x300 pixels (breed)</small>
                             </div>
 
                             <div className="form-group">
-                                <label>Link URL (Optioneel)</label>
+                                <label>Afbeelding URL (Directe link)</label>
+                                <input
+                                    className="modal-input"
+                                    value={manualImgUrl}
+                                    onChange={e => setManualImgUrl(e.target.value)}
+                                    placeholder="https://example.com/plaatje.jpg"
+                                />
+                                <small style={{color:'#666', fontStyle:'italic'}}>
+                                    Wordt genegeerd als je hierboven al een bestand hebt gekozen.
+                                </small>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Bezoek URL</label>
                                 <input
                                     className="modal-input"
                                     value={linkUrl}

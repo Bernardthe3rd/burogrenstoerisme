@@ -51,17 +51,25 @@ export const bannerService = {
     },
 
     // 4. Maak banner record in DB
-    async create(title: string, link_url: string, file: File) {
+    async create(title: string, link_url: string | null, file: File | null, manualUrl: string = '') {
         // Stap A: Upload plaatje
-        const imageUrl = await this.uploadImage(file)
+        let finalImageUrl = manualUrl
+
+        if (file) {
+            finalImageUrl = await this.uploadImage(file)
+        }
+
+        if (!finalImageUrl) {
+            throw new Error("Kies een afbeelding of vul een afbeeldings-URL in")
+        }
 
         // Stap B: Save data
         return supabase
             .from('banners')
             .insert([{
                 title,
-                link_url,
-                image_url: imageUrl,
+                link_url: link_url || null,
+                image_url: finalImageUrl,
                 is_active: true
             }])
             .select()

@@ -39,6 +39,15 @@ export default function Navbar() {
                         <Link to="/admin/invoices" className={isActive('/admin/invoices')}>
                             💶 Facturen
                         </Link>
+                        <Link to="/admin/banners" className={isActive('/admin/banners')}>
+                            🖼️ Banners
+                        </Link>
+                        <Link to="/admin/correspondence" className={isActive('/admin/correspondence')}>
+                            ✉️ Berichten
+                        </Link>
+                        <Link to="/admin/businesses" className={isActive('/admin/businesses')}>
+                            📍️ Bedrijven
+                        </Link>
                     </>
                 )}
 

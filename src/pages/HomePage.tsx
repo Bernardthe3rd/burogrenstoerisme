@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import GrensMap from '../components/map/GrensMap'
 import { businessService, type Business } from "../services/businesses.ts"
+import { bannerService, type Banner} from "../services/banners.ts";
 import './HomePage.css'
 import {Link} from "react-router-dom";
 
@@ -17,6 +18,7 @@ const CATEGORY_CONFIG: Record<string, { label: string, icon: string }> = {
 
 export default function HomePage() {
     const [allBusinesses, setAllBusinesses] = useState<Business[]>([])
+    const [banners, setBanners] = useState<Banner[]>([])
 
     // Filters
     const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -25,11 +27,20 @@ export default function HomePage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await businessService.getAll()
-            if (data) setAllBusinesses(data)
+            const [businessResults, bannerResults] = await Promise.all([
+                businessService.getAll(),
+                bannerService.getActive()
+            ])
+
+            if (businessResults.data) setAllBusinesses(businessResults.data)
+            if (bannerResults.data) setBanners(bannerResults.data)
         }
-        fetchData()
+        fetchData().catch(console.error)
     }, [])
+
+    const handleBannerClick = (bannerId: string) => {
+        bannerService.trackClick(bannerId).catch(console.error)
+    }
 
     // --- MAGIE 1: DYNAMISCHE HOOFD CATEGORIEËN ---
     const availableCategories = useMemo(() => {
@@ -105,6 +116,30 @@ export default function HomePage() {
                 <h1>🇩🇪 BURO GRENSTOERISME 🇳🇱</h1>
                 <p>Ontdek de beste winkels, restaurants en tankstations net over de grens.</p>
 
+                {/* BANNER WEERGAVE */}
+                {banners.length > 0 && (
+                    <div className="home__banner-section">
+                        {banners.map((banner) => (
+                            <a
+                                key={banner.id}
+                                href={banner.link_url || '#'}
+                                target={banner.link_url ? "_blank" : "_self"}
+                                rel="noreferrer"
+                                className="promo-banner-link"
+                                onClick={() => handleBannerClick(banner.id)}
+                            >
+                                <span className="promo-banner__img-wrapper">
+                                <img
+                                    src={banner.image_url}
+                                    alt={banner.title}
+                                />
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                )}
+
+                {/* ZOEKBALK */}
                 <div className="home__search-wrapper">
                     <input
                         type="text"
