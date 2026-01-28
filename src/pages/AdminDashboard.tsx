@@ -60,6 +60,14 @@ export default function AdminDashboard() {
                     <p>Facturen overzicht.</p>
                 </div>
 
+                {/* KAART 6: Banners */}
+                <div className="dashboard-card" onClick={() => navigate('/admin/banners')}>
+                    <div className="card-icon">🖼️</div>
+                    <h3>Promotie Banners</h3>
+                    <p>Beheer de reclamebalk op de startpagina.</p>
+                </div>
+
+
             </div>
         </div>
     )

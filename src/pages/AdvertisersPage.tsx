@@ -158,7 +158,6 @@ export default function AdvertisersPage() {
                         {advertisers.map(adv => (
                             <tr key={adv.id}>
                                 <td className="company-cell">{adv.company_name}</td>
-                                <td>{adv.city}</td>
                                 <td>
                                     {adv.contact_person}
                                     <small className="contact-email-small">{adv.email}</small>

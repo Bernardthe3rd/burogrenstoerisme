@@ -52,6 +52,36 @@ export type Database = {
           },
         ]
       }
+      banners: {
+        Row: {
+          id: string
+          created_at: string
+          title: string
+          image_url: string
+          link_url: string | null
+          is_active: boolean
+          clicks: number
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          title: string
+          image_url: string
+          link_url?: string | null
+          is_active?: boolean
+          clicks?: number
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          title?: string
+          image_url?: string
+          link_url?: string | null
+          is_active?: boolean
+          clicks?: number
+        }
+        Relationships: []
+      }
       businesses: {
         Row: {
           address: string

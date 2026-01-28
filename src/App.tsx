@@ -16,6 +16,7 @@ import CorrespondencePage from './pages/CorrespondencePage.tsx';
 import AdvertisersPage from "./pages/AdvertisersPage.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import InvoicesPage from "./pages/InvoicesPage.tsx";
+import BannersPage from "./pages/BannersPage.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -71,6 +72,13 @@ function App() {
                         <StudentsPage/>
                     </ProtectedRoute>
                 }/>
+
+                <Route path="/admin/banners" element={
+                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                        <BannersPage />
+                    </ProtectedRoute>
+                } />
+
 
                 <Route path="/student" element={
                     <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
