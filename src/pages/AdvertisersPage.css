@@ -1,0 +1,45 @@
+/* Speciale box in de modal voor de student-selectie */
+.commission-box {
+    background-color: #f0f9ff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #bae6fd;
+    margin-bottom: 20px;
+}
+
+.commission-label {
+    display: block;
+    color: #0284c7;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Tabel specifieke stijlen */
+.company-cell {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.contact-email-small {
+    display: block;
+    font-size: 0.85em;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* Logica voor de 'Aangebracht door' cel */
+.acquired-cell {
+    font-size: 0.95em;
+}
+
+/* Stijl als er een student gekoppeld is */
+.acquired-cell.is-student {
+    color: #166534; /* Donkergroen */
+    font-weight: 500;
+}
+
+/* Stijl als het 'Direct' is (geen student) */
+.acquired-cell.is-direct {
+    color: #9ca3af; /* Grijs */
+    font-style: italic;
+}

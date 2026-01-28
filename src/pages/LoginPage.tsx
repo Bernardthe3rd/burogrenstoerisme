@@ -22,7 +22,7 @@ export default function LoginPage() {
         }
 
         await loadUser()
-        navigate('/admin')
+        navigate('/')
     }
 
     return (

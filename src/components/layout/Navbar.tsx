@@ -33,11 +33,20 @@ export default function Navbar() {
                         <Link to="/admin" className={isActive('/admin')}>
                             📊 Dashboard
                         </Link>
-                        <Link to="/students" className={isActive('/admin/students')}>
+                        <Link to="/admin/students" className={isActive('/admin/students')}>
                             🎓 Studenten
                         </Link>
-                        <Link to="/invoices" className={isActive('/admin/invoices')}>
+                        <Link to="/admin/invoices" className={isActive('/admin/invoices')}>
                             💶 Facturen
+                        </Link>
+                        <Link to="/admin/banners" className={isActive('/admin/banners')}>
+                            🖼️ Banners
+                        </Link>
+                        <Link to="/admin/correspondence" className={isActive('/admin/correspondence')}>
+                            ✉️ Berichten
+                        </Link>
+                        <Link to="/admin/businesses" className={isActive('/admin/businesses')}>
+                            📍️ Bedrijven
                         </Link>
                     </>
                 )}

@@ -52,6 +52,36 @@ export type Database = {
           },
         ]
       }
+      banners: {
+        Row: {
+          id: string
+          created_at: string
+          title: string
+          image_url: string
+          link_url: string | null
+          is_active: boolean
+          clicks: number
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          title: string
+          image_url: string
+          link_url?: string | null
+          is_active?: boolean
+          clicks?: number
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          title?: string
+          image_url?: string
+          link_url?: string | null
+          is_active?: boolean
+          clicks?: number
+        }
+        Relationships: []
+      }
       businesses: {
         Row: {
           address: string
@@ -68,6 +98,8 @@ export type Database = {
           name: string
           phone: string | null
           website: string | null
+          image_url: string | null
+          description: string | null
         }
         Insert: {
           address: string
@@ -207,6 +239,7 @@ export type Database = {
           amount: number
           status: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date: string | null
+          description: string
         }
         Insert: {
           id?: string
@@ -216,6 +249,7 @@ export type Database = {
           amount: number
           status?: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date?: string | null
+          description?: string
         }
         Update: {
           id?: string
@@ -224,6 +258,7 @@ export type Database = {
           amount?: number
           status?: 'draft' | 'sent' | 'paid' | 'overdue'
           due_date?: string | null
+          description?: string
         }
         Relationships: [
           {

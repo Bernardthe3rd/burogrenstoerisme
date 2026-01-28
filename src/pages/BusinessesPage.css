@@ -1,0 +1,190 @@
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.add-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+.table-responsive {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    color: #495057;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.admin-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Badge styling hergebruiken of aanpassen */
+.badge.supermarket { background: #e3f2fd; color: #0d47a1; }
+.badge.gas_station { background: #ffebee; color: #b71c1c; }
+.badge.restaurant { background: #e8f5e9; color: #1b5e20; }
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.edit-btn:hover { background-color: #e3f2fd; }
+.delete-btn:hover { background-color: #ffebee; }
+
+/* --- Modal Styles --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px); /* Mooi blur effect op achtergrond */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: #333;
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+.cancel-btn {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: #555;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #ccc;
+}
+
+/* Factuur status kleuren */
+.badge.draft { background: #e0e0e0; color: #616161; }
+.badge.sent { background: #e3f2fd; color: #1976d2; }
+.badge.paid { background: #e8f5e9; color: #2e7d32; }
+.badge.overdue { background: #ffebee; color: #c62828; }
+
+
+/* Simpele animaties */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
