@@ -98,6 +98,8 @@ export type Database = {
           name: string
           phone: string | null
           website: string | null
+          image_url: string | null
+          description: string | null
         }
         Insert: {
           address: string

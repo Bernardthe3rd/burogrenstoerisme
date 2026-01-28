@@ -14,7 +14,9 @@ export default function BusinessesPage() {
         category: 'Hotel',
         address: '',
         city: '',
-        country: 'NL'
+        country: 'NL',
+        image_url: '',
+        description: '',
     })
 
     useEffect(() => {
@@ -65,7 +67,7 @@ export default function BusinessesPage() {
 
             // Opruimen
             setIsModalOpen(false)
-            setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL' })
+            setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '' , description: '' })
             setEditingId(null)
 
         } catch (error) {
@@ -81,14 +83,16 @@ export default function BusinessesPage() {
             category: business.category,
             address: business.address || "",
             city: business.city,
-            country: business.country
+            country: business.country,
+            image_url: business.image_url || "",
+            description: business.description || ""
         })
         setEditingId(business.id)
         setIsModalOpen(true)
     }
 
     const handleNew = () => {
-        setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL' })
+        setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '', description: '' })
         setEditingId(null)
         setIsModalOpen(true)
     }
@@ -141,6 +145,26 @@ export default function BusinessesPage() {
                                     value={formData.address}
                                     onChange={e => setFormData({...formData, address: e.target.value})}
                                     required // Maak hem verplicht in HTML zodat je niet per ongeluk leeg verstuurt
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Afbeelding URL (Kopieer link van banner of internet)</label>
+                                <input
+                                    className="modal-input"
+                                    placeholder="https://..."
+                                    value={formData.image_url}
+                                    onChange={e => setFormData({...formData, image_url: e.target.value})}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Omschrijving</label>
+                                <input
+                                    className="modal-input"
+                                    placeholder="https://..."
+                                    value={formData.description}
+                                    onChange={e => setFormData({...formData, description: e.target.value})}
                                 />
                             </div>
 

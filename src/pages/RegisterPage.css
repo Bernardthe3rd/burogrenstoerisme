@@ -1,0 +1,11 @@
+/*Hoe het nu werkt in de praktijk:*/
+/*1.	Jij (Admin): Gaat naar ‘Studenten Team’, klikt ‘Nieuwe Student’ en vult in:  jan@student.nl  + commissie 10%.*/
+/*•	Database: Er staat nu een rij in  students  met email  jan@student.nl  en een tijdelijk ID.*/
+/*2.	Jij: Stuurt Jan een appje: “Hoi Jan, maak even een account aan op onze site met jan@student.nl”.*/
+/*3.	Jan (Student): Gaat naar  /register , vult  jan@student.nl  in en kiest zijn eigen wachtwoord  Geheim123 .*/
+/*4.	Systeem:*/
+/*•	Maakt Auth user aan.*/
+/*•	Trigger ziet: “Hé, ik ken  jan@student.nl  al!”*/
+/*•	Zet Jan’s rol op  student .*/
+/*•	Koppelt Jan’s nieuwe Auth ID aan zijn commissie-gegevens.*/
+/*5.	Jan: Logt in en ziet direct zijn Dashboard! 🚀*/

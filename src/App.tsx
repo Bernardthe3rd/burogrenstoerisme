@@ -17,6 +17,7 @@ import AdvertisersPage from "./pages/AdvertisersPage.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import InvoicesPage from "./pages/InvoicesPage.tsx";
 import BannersPage from "./pages/BannersPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -85,6 +86,10 @@ function App() {
                         <StudentDashboard />
                     </ProtectedRoute>
                 } />
+
+                <Route path="/register" element={
+                    <RegisterPage />
+                }/>
 
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
