@@ -10,6 +10,8 @@ export type InvoiceUpdate = Database['public']['Tables']['invoices']['Update']
 export interface InvoiceWithAdvertiser extends Invoice {
     advertisers: {
         company_name: string
+        contact_person?: string
+        email?: string
     } | null
 }
 
@@ -19,7 +21,7 @@ export const invoiceService = {
     async getAll() {
         const { data, error } = await supabase
             .from('invoices')
-            .select('*, advertisers(company_name)') // Dit is de magic join string
+            .select('*, advertisers(company_name, contact_person, email)') // Dit is de magic join string
             .order('created_at', { ascending: false })
 
         // Type casting forceren we hier veilig

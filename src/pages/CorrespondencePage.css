@@ -1,0 +1,39 @@
+/* Modal formulier tweaks */
+.msg-textarea {
+    resize: vertical;
+    font-family: inherit;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+/* Tabel tweaks */
+.date-cell {
+    white-space: nowrap;
+}
+
+.time-label {
+    display: block;
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 2px;
+}
+
+.preview-cell {
+    color: #555;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recipient-cell {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+    font-style: italic;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { studentService, type Student, type StudentInsert } from '../services/students'
-import './AdminDashboard.css' // We hergebruiken gewoon de CSS van het dashboard!
+import './BusinessesPage.css' // We hergebruiken gewoon de CSS van het dashboard!
 
 export default function StudentsPage() {
     const [students, setStudents] = useState<Student[]>([]) // <--- Hier gebruiken we het Type!
@@ -22,15 +22,15 @@ export default function StudentsPage() {
     })
 
     useEffect(() => {
-        fetchStudents()
-    }, [])
+        const fetchStudents = async () => {
+            setLoading(true)
+            const { data } = await studentService.getAll()
+            if (data) setStudents(data)
+            setLoading(false)
+        }
 
-    const fetchStudents = async () => {
-        setLoading(true)
-        const { data } = await studentService.getAll()
-        if (data) setStudents(data)
-        setLoading(false)
-    }
+        fetchStudents().catch(console.error)
+    }, [])
 
     const handleDelete = async (id: string) => {
         if (!window.confirm('Weet je zeker dat je deze student wilt verwijderen?')) return
