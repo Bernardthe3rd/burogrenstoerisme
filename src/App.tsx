@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAuthStore } from './store/authStore'
 import { ProtectedRoute } from './components/common/ProtectedRoute'
@@ -36,7 +36,7 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <>
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -99,7 +99,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Footer/>
-        </BrowserRouter>
+        </>
     )
 }
 
