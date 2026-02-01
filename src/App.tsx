@@ -20,8 +20,11 @@ import BannersPage from "./pages/BannersPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import Footer from "./components/layout/Footer.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import {useAutoLogout} from "./hooks/useAutoLogout.ts";
 
 function App() {
+    useAutoLogout(60)
+
     const { loadUser, loading } = useAuthStore()
 
     useEffect(() => {
