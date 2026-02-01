@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAuthStore } from './store/authStore'
 import { ProtectedRoute } from './components/common/ProtectedRoute'
@@ -18,6 +18,8 @@ import AdminDashboard from "./pages/AdminDashboard.tsx";
 import InvoicesPage from "./pages/InvoicesPage.tsx";
 import BannersPage from "./pages/BannersPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
+import Footer from "./components/layout/Footer.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 function App() {
     const { loadUser, loading } = useAuthStore()
@@ -91,8 +93,9 @@ function App() {
                     <RegisterPage />
                 }/>
 
-                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }
