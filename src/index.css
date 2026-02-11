@@ -34,7 +34,7 @@ img {
   border-radius: 10px;
 }
 
-ul {
+ul, li {
   list-style-type: none;
 }
 
