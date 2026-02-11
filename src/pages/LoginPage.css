@@ -1,12 +1,11 @@
 .login__form-section {
-    border: 2px solid red;
     padding: 20px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2rem;
+    row-gap: 5rem;
 }
 
 .login__form {
@@ -14,12 +13,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2rem;
+    row-gap: 4rem;
 }
 
 .login__btn-nav {
-    border: 5px solid purple;
     padding-block: 50px;
     margin-block: 2rem;
-    text-align: center;
 }

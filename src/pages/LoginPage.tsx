@@ -4,6 +4,8 @@ import { authService } from '../services/auth'
 import { useAuthStore } from '../store/authStore'
 import ButtonNav from "../components/layout/ButtonNav.tsx";
 import "./LoginPage.css"
+import InputField from "../components/layout/InputField.tsx";
+import ButtonLink from "../components/layout/ButtonLink.tsx";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
@@ -32,19 +34,9 @@ export default function LoginPage() {
             <div className="login__form-section">
                 <h1>Login</h1>
                 <form onSubmit={handleLogin} className="login__form">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button type="submit">Login</button>
+                    <InputField type="email" placeholder="Email" value={email} handleChange={(e) => setEmail(e.target.value)} />
+                    <InputField type="password" placeholder="Wachtwoord" value={password} handleChange={(e) => setPassword(e.target.value)} />
+                    <ButtonLink type="submit" text="Login" />
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                 </form>
             </div>
