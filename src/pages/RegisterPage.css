@@ -9,3 +9,35 @@
 /*•	Zet Jan’s rol op  student .*/
 /*•	Koppelt Jan’s nieuwe Auth ID aan zijn commissie-gegevens.*/
 /*5.	Jan: Logt in en ziet direct zijn Dashboard! 🚀*/
+
+.login-card {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 2rem;
+}
+
+.register__form {
+    border: 1px solid purple;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 2rem;
+}
+
+.register__form-group {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+.register__footer {
+    border: 1px solid red;
+    padding: 2rem;
+}
