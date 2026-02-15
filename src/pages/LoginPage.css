@@ -1,0 +1,22 @@
+.login__form-section {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5rem;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4rem;
+}
+
+.login__btn-nav {
+    padding-block: 50px;
+    margin-block: 2rem;
+}

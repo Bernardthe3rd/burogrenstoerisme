@@ -1,0 +1,13 @@
+.input-field {
+    padding: 10px;
+    border: 1px solid var(--tekst-clr);
+    border-radius: 10px;
+    min-width: 600px;
+    text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+    .input-field {
+        min-width: 400px;
+    }
+}

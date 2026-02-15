@@ -21,6 +21,8 @@ import RegisterPage from "./pages/RegisterPage.tsx";
 import Footer from "./components/layout/Footer.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import {useAutoLogout} from "./hooks/useAutoLogout.ts";
+import ForgotPassword from './pages/ForgotPassword'
+import UpdatePassword from './pages/UpdatePassword'
 
 function App() {
     useAutoLogout(60)
@@ -42,6 +44,10 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/business/:id" element={<BusinessDetailPage />} />
                 <Route path="/login" element={<LoginPage />} />
+
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/update-password" element={<UpdatePassword />} />
+
                 <Route path="/admin" element={
                     <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
                         <AdminDashboard/>

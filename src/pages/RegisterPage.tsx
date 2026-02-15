@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useNavigate, Link } from 'react-router-dom'
 import './RegisterPage.css'
+import ButtonLink from "../components/layout/ButtonLink.tsx";
 
 export default function RegisterPage() {
     const navigate = useNavigate()
@@ -43,8 +44,8 @@ export default function RegisterPage() {
                 <h1>Registreren</h1>
                 <p>Maak een account aan om toegang te krijgen.</p>
 
-                <form onSubmit={handleRegister} className="login-form">
-                    <div className="form-group">
+                <form onSubmit={handleRegister} className="register__form">
+                    <div className="register__form-group">
                         <label>Email</label>
                         <input
                             type="email"
@@ -54,7 +55,7 @@ export default function RegisterPage() {
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div className="register__form-group">
                         <label>Wachtwoord</label>
                         <input
                             type="password"
@@ -64,13 +65,10 @@ export default function RegisterPage() {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </div>
-
-                    <button type="submit" className="login-btn" disabled={loading}>
-                        {loading ? 'Bezig...' : 'Account Aanmaken'}
-                    </button>
+                    <ButtonLink text={loading ? 'Bezig...' : 'Account Aanmaken'} type="submit" />
                 </form>
 
-                <div className="login-footer">
+                <div className="register__footer">
                     <p>Heb je al een account? <Link to="/login">Log hier in</Link></p>
                 </div>
             </div>
