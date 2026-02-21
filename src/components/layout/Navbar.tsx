@@ -17,7 +17,7 @@ export default function Navbar() {
     return (
         <nav className="sidebar">
             <div className="sidebar-header">
-                <h4>🇩🇪 Grensgebied</h4>
+                <h4>🇩🇪 Grenstoerisme</h4>
             </div>
             <div className="sidebar-links">
                 <ButtonNav path="/" text="🏠 Home" />
