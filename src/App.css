@@ -1,6 +1,17 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content-routes {
+  flex: 1;
+  width: 100%;
+}
+
 .container {
-  margin-left: 200px;
-  width: calc(100% - 200px);
+  margin-left: 275px;
+  width: calc(100% - 275px);
   padding: 2rem;
 }
 

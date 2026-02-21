@@ -4,6 +4,7 @@ import { businessService, type Business } from "../services/businesses.ts"
 import { bannerService, type Banner} from "../services/banners.ts";
 import './HomePage.css'
 import {Link} from "react-router-dom";
+import InputField from "../components/layout/InputField.tsx";
 
 // 1. CONFIGURATIE: Vertalingen en Iconen
 // Hier koppel je de database-waarde aan een mooi label + icoon
@@ -141,13 +142,7 @@ export default function HomePage() {
 
                 {/* ZOEKBALK */}
                 <div className="home__search-wrapper">
-                    <input
-                        type="text"
-                        placeholder="🔍 Zoek op naam, stad of keuken..."
-                        className="home__search-input"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                    <InputField type="text" placeholder="Zoek op naam, stad of keuken..." value={searchTerm} handleChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
             </section>
 
