@@ -1,22 +1,39 @@
-.login__form-section {
-    padding: 20px;
-
+.login-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 5rem;
+    row-gap: 2rem;
+}
+
+.login__header {
+    margin-block: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
 }
 
 .login__form {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 4rem;
+    row-gap: 2rem;
 }
 
-.login__btn-nav {
-    padding-block: 50px;
-    margin-block: 2rem;
+.login__form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+.login__footer {
+    padding: 2rem;
+    margin-block: 5rem;
+    border-top: 1px solid #e2e8f0;
 }

@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Link } from 'react-router-dom'
-import './ForgotPassword.css' // Importeer de CSS
+import './ForgotPassword.css'
+import InputField from "../components/layout/InputField.tsx";
+import ButtonLink from "../components/layout/ButtonLink.tsx"; // Importeer de CSS
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('')
@@ -31,36 +33,28 @@ export default function ForgotPassword() {
     }
 
     return (
-        <div className="container">
-            <div className="fp-card">
-                <h2>Wachtwoord vergeten?</h2>
-                <p className="fp-description">Vul je e-mailadres in en we sturen je een link om een nieuw wachtwoord in te stellen.</p>
+        <main className="container">
+            <article className="fp-card">
+                <div className="fp-header">
+                    <h2>Wachtwoord vergeten?</h2>
+                    <p>Vul je e-mailadres in en we sturen je een link om een nieuw wachtwoord in te stellen.</p>
+                </div>
 
                 <form onSubmit={handleResetRequest} className="fp-form">
                     <div className="fp-form-group">
                         <label htmlFor="email">E-mailadres</label>
-                        <input
-                            id="email"
-                            type="email"
-                            required
-                            placeholder="jouw@email.nl"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                        <InputField type="email" placeholder="" value={email} handleChange={(e) => setEmail(e.target.value)} />
                     </div>
 
                     {errorMsg && <div className="fp-alert fp-error">{errorMsg}</div>}
                     {msg && <div className="fp-alert fp-success">{msg}</div>}
 
-                    <button disabled={loading} className="fp-submit-btn">
-                        {loading ? 'Versturen...' : 'Stuur herstellink'}
-                    </button>
+                    <ButtonLink text={loading ? 'Versturen...' : 'Stuur herstellink'} type="submit" disabled={loading} />
                 </form>
-
-                <div className="fp-footer">
-                    <Link to="/login" className="fp-back-link">← Terug naar inloggen</Link>
-                </div>
+            </article>
+            <div className="fp-footer">
+                <Link to="/login" className="fp-back-link">← Terug naar inloggen</Link>
             </div>
-        </div>
+        </main>
     )
 }

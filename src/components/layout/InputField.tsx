@@ -14,6 +14,7 @@ const InputField = ({type, placeholder, value, handleChange} : InputFieldProps) 
             placeholder={placeholder}
             value={value}
             onChange={handleChange}
+            required={true}
         />
     );
 };
