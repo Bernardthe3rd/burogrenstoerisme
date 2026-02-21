@@ -1,4 +1,4 @@
-import { Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { UserRole } from '../../types/user'
 import './Navbar.css'
