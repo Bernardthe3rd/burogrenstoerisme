@@ -1,63 +1,43 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
 import { UserRole } from '../../types/user'
 import './Navbar.css'
+import ButtonNav from "./ButtonNav.tsx";
 
 export default function Navbar() {
     const { user, logout } = useAuthStore()
     const navigate = useNavigate()
-    const location = useLocation()
 
     const handleLogout = async () => {
         await logout()
         navigate('/')
     }
 
-    const isActive = (path: string) => location.pathname === path ? 'nav-link active' : 'nav-link'
 
     return (
         <nav className="sidebar">
-            <Link to="/" className="sidebar-brand">
-                <span>🇩🇪 Grensgebied</span>
-            </Link>
-
+            <div className="sidebar-header">
+                <h4>🇩🇪 Grenstoerisme</h4>
+            </div>
             <div className="sidebar-links">
-                <Link to="/" className={isActive('/')}>
-                    🏠 Home
-                </Link>
+                <ButtonNav path="/" text="🏠 Home" />
 
                 {/* Admin Links */}
                 {user?.role === UserRole.ADMIN && (
                     <>
-                        <div style={{ margin: '15px 0 5px 10px', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase' }}>Admin</div>
-                        <Link to="/admin" className={isActive('/admin')}>
-                            📊 Dashboard
-                        </Link>
-                        <Link to="/admin/students" className={isActive('/admin/students')}>
-                            🎓 Studenten
-                        </Link>
-                        <Link to="/admin/invoices" className={isActive('/admin/invoices')}>
-                            💶 Facturen
-                        </Link>
-                        <Link to="/admin/banners" className={isActive('/admin/banners')}>
-                            🖼️ Banners
-                        </Link>
-                        <Link to="/admin/correspondence" className={isActive('/admin/correspondence')}>
-                            ✉️ Berichten
-                        </Link>
-                        <Link to="/admin/businesses" className={isActive('/admin/businesses')}>
-                            📍️ Bedrijven
-                        </Link>
+                        <ButtonNav path="/admin" text="📊 Dashboard" />
+                        <ButtonNav path="/admin/students" text="🎓 Studenten" />
+                        <ButtonNav path="/admin/invoices" text=" 💶 Facturen" />
+                        <ButtonNav path="/admin/banners" text="🖼️ Banners" />
+                        <ButtonNav path="/admin/correspondence" text="✉️ Berichten" />
+                        <ButtonNav path="/admin/businesses" text="📍️ Bedrijven" />
                     </>
                 )}
 
                 {/* Student Links */}
-                {(user?.role === UserRole.STUDENT || user?.role === UserRole.ADMIN) && (
+                {user?.role === UserRole.STUDENT && (
                     <>
-                        <div style={{ margin: '15px 0 5px 10px', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase' }}>Promotie</div>
-                        <Link to="/student" className={isActive('/student')}>
-                            👥 Mijn Klanten
-                        </Link>
+                        <ButtonNav path="/student" text="👥 Klanten" />
                     </>
                 )}
             </div>
@@ -71,9 +51,7 @@ export default function Navbar() {
                         </button>
                     </>
                 ) : (
-                    <Link to="/login" className="login-btn">
-                        Inloggen
-                    </Link>
+                    <ButtonNav path="/login" text="Inloggen" />
                 )}
             </div>
         </nav>

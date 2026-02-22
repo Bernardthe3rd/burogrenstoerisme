@@ -24,7 +24,7 @@ body {
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
-  font-size: 24px;
+  font-size: 18px;
   background-color: whitesmoke;
 }
 
@@ -34,16 +34,16 @@ img {
   border-radius: 10px;
 }
 
-ul {
+ul, li {
   list-style-type: none;
 }
 
 a {
-  color: var(--tekst-clr);
+  color: var(--white);
 }
 
 a:hover {
-  color: var(--white);
+  color: var(--tekst-clr);
 }
 
 button, input, select, textarea {

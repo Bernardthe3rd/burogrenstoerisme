@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useNavigate, Link } from 'react-router-dom'
 import './RegisterPage.css'
+import ButtonLink from "../components/layout/ButtonLink.tsx";
+import InputField from "../components/layout/InputField.tsx";
 
 export default function RegisterPage() {
     const navigate = useNavigate()
@@ -38,42 +40,29 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="container">
-            <div className="login-card">
-                <h1>Registreren</h1>
-                <p>Maak een account aan om toegang te krijgen.</p>
-
-                <form onSubmit={handleRegister} className="login-form">
-                    <div className="form-group">
+        <main className="container">
+            <article className="register-card">
+                <div className="register__header">
+                    <h1>Registreren</h1>
+                    <p>Maak een account aan om toegang te krijgen.</p>
+                </div>
+                <form onSubmit={handleRegister} className="register__form">
+                    <div className="register__form-group">
                         <label>Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
+                        <InputField type="email" placeholder="" value={email} handleChange={e => setEmail(e.target.value)} />
                     </div>
 
-                    <div className="form-group">
+                    <div className="register__form-group">
                         <label>Wachtwoord</label>
-                        <input
-                            type="password"
-                            required
-                            minLength={6}
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
+                        <InputField type="password" placeholder="" value={password} handleChange={e => setPassword(e.target.value)} />
                     </div>
-
-                    <button type="submit" className="login-btn" disabled={loading}>
-                        {loading ? 'Bezig...' : 'Account Aanmaken'}
-                    </button>
+                    <ButtonLink text={loading ? 'Bezig...' : 'Account Aanmaken'} type="submit" disabled={loading} />
                 </form>
 
-                <div className="login-footer">
-                    <p>Heb je al een account? <Link to="/login">Log hier in</Link></p>
-                </div>
+            </article>
+            <div className="register__footer">
+                <p>Heb je al een account? <Link to="/login">Log hier in</Link></p>
             </div>
-        </div>
+        </main>
     )
 }

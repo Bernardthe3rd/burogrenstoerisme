@@ -1,0 +1,11 @@
+.button-link {
+    padding: 20px 100px;
+    border-radius: 10px;
+    background-color: var(--btn-clr-first);
+    color: white;
+}
+
+.button-link:hover {
+    background-color: var(--btn-clr-secondary);
+    cursor: pointer;
+}

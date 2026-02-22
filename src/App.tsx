@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useAuthStore } from './store/authStore'
-import { ProtectedRoute } from './components/common/ProtectedRoute'
-import { UserRole } from './types/user'
+import {Routes, Route} from 'react-router-dom'
+import {useEffect} from 'react'
+import {useAuthStore} from './store/authStore'
+import {ProtectedRoute} from './components/common/ProtectedRoute'
+import {UserRole} from './types/user'
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
@@ -21,11 +21,13 @@ import RegisterPage from "./pages/RegisterPage.tsx";
 import Footer from "./components/layout/Footer.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import {useAutoLogout} from "./hooks/useAutoLogout.ts";
+import ForgotPassword from './pages/ForgotPassword'
+import UpdatePassword from './pages/UpdatePassword'
 
 function App() {
     useAutoLogout(60)
 
-    const { loadUser, loading } = useAuthStore()
+    const {loadUser, loading} = useAuthStore()
 
     useEffect(() => {
         loadUser().catch(console.error)
@@ -36,70 +38,77 @@ function App() {
     }
 
     return (
-        <>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/business/:id" element={<BusinessDetailPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/admin" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <AdminDashboard/>
-                    </ProtectedRoute>
-                }/>
-                <Route
-                    path="/admin/businesses"
-                    element={
+        <div className="app-wrapper">
+            <Navbar/>
+
+            <main className="main-content-routes">
+                <Routes>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="/business/:id" element={<BusinessDetailPage/>}/>
+                    <Route path="/login" element={<LoginPage/>}/>
+
+                    <Route path="/forgot-password" element={<ForgotPassword/>}/>
+                    <Route path="/update-password" element={<UpdatePassword/>}/>
+
+                    <Route path="/admin" element={
                         <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                            <BusinessesPage />
+                            <AdminDashboard/>
                         </ProtectedRoute>
-                    }
-                />
-                <Route path="/admin/advertisers" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <AdvertisersPage/>
-                    </ProtectedRoute>
-                }/>
+                    }/>
+                    <Route
+                        path="/admin/businesses"
+                        element={
+                            <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                                <BusinessesPage/>
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route path="/admin/advertisers" element={
+                        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                            <AdvertisersPage/>
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/admin/correspondence" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <CorrespondencePage />
-                    </ProtectedRoute>
-                } />
+                    <Route path="/admin/correspondence" element={
+                        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                            <CorrespondencePage/>
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/admin/invoices" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <InvoicesPage />
-                    </ProtectedRoute>
-                } />
+                    <Route path="/admin/invoices" element={
+                        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                            <InvoicesPage/>
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/admin/students" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <StudentsPage/>
-                    </ProtectedRoute>
-                }/>
+                    <Route path="/admin/students" element={
+                        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                            <StudentsPage/>
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/admin/banners" element={
-                    <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                        <BannersPage />
-                    </ProtectedRoute>
-                } />
+                    <Route path="/admin/banners" element={
+                        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
+                            <BannersPage/>
+                        </ProtectedRoute>
+                    }/>
 
 
-                <Route path="/student" element={
-                    <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
-                        <StudentDashboard />
-                    </ProtectedRoute>
-                } />
+                    <Route path="/student" element={
+                        <ProtectedRoute allowedRoles={[UserRole.STUDENT]}>
+                            <StudentDashboard/>
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/register" element={
-                    <RegisterPage />
-                }/>
+                    <Route path="/register" element={
+                        <RegisterPage/>
+                    }/>
 
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+                    <Route path="*" element={<NotFoundPage/>}/>
+                </Routes>
+            </main>
             <Footer/>
-        </>
+        </div>
     )
 }
 
