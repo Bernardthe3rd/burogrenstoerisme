@@ -97,8 +97,7 @@ export default function BusinessDetailPage() {
                     </div>
 
                     {/* MINI MAPJE */}
-                    <div style={{marginTop: '20px', height: '250px', borderRadius: '12px', overflow: 'hidden'}}>
-                        {/* We hergebruiken je GrensMap component, maar geven maar 1 bedrijf mee! */}
+                    <div className="mini-map">
                         <GrensMap businesses={[business]} />
                     </div>
                 </div>
