@@ -135,3 +135,10 @@
     color: #334155;
     border: 1px solid #cbd5e1;
 }
+
+.mini-map {
+    margin-top: 2rem;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+}
