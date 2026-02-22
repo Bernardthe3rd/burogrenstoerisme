@@ -1,7 +1,6 @@
 /* Header sectie */
 .home__upper-section {
-    margin: 50px auto;
-
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,7 +10,7 @@
 /* Map sectie */
 .home__map-section {
     margin: 10px auto;
-    max-width: 1200px;
+    padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 8px;
 }

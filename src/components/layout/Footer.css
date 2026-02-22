@@ -1,28 +1,21 @@
-.site-footer {
-    background-color: #1e293b;
-    color: #e2e8f0;
-    padding: 40px 0 20px 0;
-    margin-top: auto; /* Duwt footer naar beneden bij weinig content */
-}
-
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 30px;
+    /*border: 2px dashed purple;*/
+    /*background-color: var(--background-clr-first);*/
+    border-radius: 15px;
+    padding-block: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
-
-.footer-column h3 { color: white; margin-bottom: 15px; }
-.footer-column h4 { color: #94a3b8; text-transform: uppercase; font-size: 0.9em; margin-bottom: 15px; }
-.footer-column ul { list-style: none; padding: 0; }
-.footer-column li { margin-bottom: 8px; }
-.footer-column a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
-.footer-column a:hover { color: white; text-decoration: underline; }
 
 .footer-bottom {
-    border-top: 1px solid #334155;
-    padding-top: 20px;
+    border-top: 1px solid var(--tekst-clr);
+    padding-top: 2rem;
     text-align: center;
-    font-size: 0.9em;
-    color: #64748b;
+}
+
+.footer-color {
+    background-color: var(--background-clr-first);
+    border-radius: 10px;
 }

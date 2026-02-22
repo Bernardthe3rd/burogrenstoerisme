@@ -112,7 +112,7 @@ export default function HomePage() {
     }
 
     return (
-        <main className="container home-container">
+        <main className="container">
             <section className="home__upper-section">
                 <h1>🇩🇪 BURO GRENSTOERISME 🇳🇱</h1>
                 <p>Ontdek de beste winkels, restaurants en tankstations net over de grens.</p>

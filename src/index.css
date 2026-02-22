@@ -39,11 +39,11 @@ ul, li {
 }
 
 a {
-  color: var(--tekst-clr);
+  color: var(--white);
 }
 
 a:hover {
-  color: var(--white);
+  color: var(--tekst-clr);
 }
 
 button, input, select, textarea {

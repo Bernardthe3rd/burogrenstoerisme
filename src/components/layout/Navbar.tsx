@@ -35,7 +35,7 @@ export default function Navbar() {
                 )}
 
                 {/* Student Links */}
-                {(user?.role === UserRole.STUDENT || user?.role === UserRole.ADMIN) && (
+                {user?.role === UserRole.STUDENT && (
                     <>
                         <ButtonNav path="/student" text="👥 Klanten" />
                     </>
