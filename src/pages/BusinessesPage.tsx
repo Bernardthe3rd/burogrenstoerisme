@@ -17,6 +17,7 @@ export default function BusinessesPage() {
         country: 'NL',
         image_url: '',
         description: '',
+        website: '',
     })
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export default function BusinessesPage() {
 
             // Opruimen
             setIsModalOpen(false)
-            setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '' , description: '' })
+            setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '' , description: '', website: '' })
             setEditingId(null)
 
         } catch (error) {
@@ -85,14 +86,15 @@ export default function BusinessesPage() {
             city: business.city,
             country: business.country,
             image_url: business.image_url || "",
-            description: business.description || ""
+            description: business.description || "",
+            website: business.website || "",
         })
         setEditingId(business.id)
         setIsModalOpen(true)
     }
 
     const handleNew = () => {
-        setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '', description: '' })
+        setFormData({ name: '', category: 'Hotel', address: '', city: '', country: 'NL', image_url: '', description: '' , website: '' })
         setEditingId(null)
         setIsModalOpen(true)
     }
@@ -149,7 +151,7 @@ export default function BusinessesPage() {
                             </div>
 
                             <div className="form-group">
-                                <label>Afbeelding URL (Kopieer link van banner of internet)</label>
+                                <label>Afbeelding URL voor detailpagina</label>
                                 <input
                                     className="modal-input"
                                     placeholder="https://..."
@@ -162,9 +164,19 @@ export default function BusinessesPage() {
                                 <label>Omschrijving</label>
                                 <input
                                     className="modal-input"
-                                    placeholder="https://..."
+                                    placeholder="tekst.."
                                     value={formData.description}
                                     onChange={e => setFormData({...formData, description: e.target.value})}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Bezoek URL bedrijf</label>
+                                <input
+                                    className="modal-input"
+                                    placeholder="https://..."
+                                    value={formData.website}
+                                    onChange={e => setFormData({...formData, website: e.target.value})}
                                 />
                             </div>
 
