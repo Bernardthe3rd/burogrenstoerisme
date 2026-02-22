@@ -254,8 +254,8 @@
 
 /* Mobiele aanpassingen */
 @media (max-width: 768px) {
-    .home-header h1 {
-        font-size: 1.8rem;
+    .home__upper-section h1 {
+        font-size: 48px;
     }
 
     .category-card {

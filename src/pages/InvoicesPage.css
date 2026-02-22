@@ -1,3 +1,11 @@
+.invoices-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+
 /* Status Badges */
 .status-badge {
     padding: 4px 8px;
@@ -53,4 +61,12 @@
 .due-date.overdue {
     color: #ef4444;
     font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .invoices-header {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
 }

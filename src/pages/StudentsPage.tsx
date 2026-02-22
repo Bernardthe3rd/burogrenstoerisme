@@ -91,7 +91,7 @@ export default function StudentsPage() {
 
     return (
         <div className="container">
-            <div className="admin-header">
+            <div className="business-header">
                 <h1>Studenten Beheer</h1>
                 <button className="add-btn" onClick={handleNew}>+ Nieuwe Student</button>
             </div>

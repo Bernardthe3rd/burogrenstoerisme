@@ -108,7 +108,7 @@ export default function StudentDashboard() {
 
     return (
         <div className="container">
-            <div className="dashboard-header">
+            <div className="student-dashboard-header">
                 <h1>Mijn Dashboard</h1>
                 <div className="commission-badge">
                     Mijn Commissie: <strong>{commissionRate}%</strong>

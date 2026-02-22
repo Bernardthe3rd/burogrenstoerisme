@@ -76,7 +76,7 @@ export default function BannersPage() {
 
     return (
         <div className="container">
-            <div className="admin-header">
+            <div className="banners-header">
                 <h1>Promotie Banners</h1>
                 <button className="add-btn" onClick={() => setIsModalOpen(true)}>
                     + Nieuwe Banner

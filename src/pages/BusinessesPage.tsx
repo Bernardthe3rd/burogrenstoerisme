@@ -101,7 +101,7 @@ export default function BusinessesPage() {
 
     return (
         <div className="container">
-            <div className="admin-header">
+            <div className="business-header">
                 <h1>Dashboard Bedrijven</h1>
                 <button className="add-btn" onClick={handleNew}>
                     + Nieuw Bedrijf

@@ -1,3 +1,11 @@
+.correspondence-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+
 /* Modal formulier tweaks */
 .msg-textarea {
     resize: vertical;
@@ -36,4 +44,12 @@
     padding: 40px;
     color: #6c757d;
     font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+    .correspondence-header {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
 }

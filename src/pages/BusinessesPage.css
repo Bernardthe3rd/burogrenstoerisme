@@ -1,8 +1,9 @@
-.admin-header {
+.business-header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    padding: 2rem;
 }
 
 .add-btn {
@@ -187,4 +188,12 @@
 @keyframes slideUp {
     from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+@media screen and (max-width: 768px) {
+    .business-header {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
 }
