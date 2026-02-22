@@ -90,8 +90,8 @@ export default function InvoicesPage() {
     }
 
     return (
-        <div className="container invoices-container">
-            <div className="admin-header">
+        <div className="container">
+            <div className="invoices-header">
                 <h1>Facturatie</h1>
                 <button className="add-btn" onClick={() => setIsModalOpen(true)}>
                     + Nieuwe Factuur

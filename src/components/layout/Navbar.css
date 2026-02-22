@@ -10,6 +10,7 @@
     padding: 1rem;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Animatie voor inschuiven */
 }
 
 .sidebar-header {
@@ -83,4 +84,102 @@
     align-items: center;
     flex-grow: 0;
     flex-shrink: 0;
+}
+
+.mobile-header, .sidebar-overlay, .close-sidebar-btn {
+    display: none;
+}
+
+/* --- Mobiele Styles (Max width 768px) --- */
+@media screen and (max-width: 768px) {
+
+    /* 1. Sidebar zelf (Nu Fullscreen Overlay) */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Volledig scherm */
+        height: 100vh;
+        z-index: 2000; /* Bovenop alles */
+        background-color: var(--background-clr-first, #fff); /* Zorg voor achtergrondkleur! */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Alles centreren */
+        padding: 2rem;
+
+        transform: translateX(-100%); /* Standaard verborgen */
+        transition: transform 0.3s ease-in-out; /* Soepele animatie */
+    }
+
+    /* 2. Sidebar tonen als hij 'open' is */
+    .sidebar.open {
+        transform: translateX(0); /* Schuif in beeld */
+    }
+
+    /* 3. Mobiele Header (Balk met Hamburger) - DEZE WAS WEG */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background-color: var(--background-clr-first, #fff);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 999; /* Net onder de sidebar overlay */
+    }
+
+    .hamburger-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* 4. Linkjes styling (Groter voor touch) */
+    .sidebar-links {
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .sidebar-links a,
+    .sidebar-links button {
+        font-size: 1.2rem;
+        padding: 15px;
+        width: 80%;
+        text-align: center;
+    }
+
+    /* 5. Sluitknop (Kruisje) */
+    .close-sidebar-btn {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--tekst-clr);
+        padding: 10px;
+    }
+
+    /* 6. Logo styling in menu */
+    .logo-img-wrapper {
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .logo-img-wrapper img {
+        width: 60px;
+    }
+
+    /* 7. Overlay is overbodig bij fullscreen menu */
+    .sidebar-overlay {
+        display: none;
+    }
 }

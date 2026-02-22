@@ -98,8 +98,8 @@ export default function CorrespondencePage() {
     }
 
     return (
-        <div className="container correspondence-container">
-            <div className="admin-header">
+        <div className="container">
+            <div className="correspondence-header">
                 <h1>Berichtencentrum</h1>
                 <button
                     className="add-btn"
