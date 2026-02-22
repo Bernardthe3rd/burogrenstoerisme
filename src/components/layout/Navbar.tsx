@@ -3,6 +3,7 @@ import { useAuthStore } from '../../store/authStore'
 import { UserRole } from '../../types/user'
 import './Navbar.css'
 import ButtonNav from "./ButtonNav.tsx";
+import logo from "/favicon.ico"
 
 export default function Navbar() {
     const { user, logout } = useAuthStore()
@@ -16,9 +17,12 @@ export default function Navbar() {
 
     return (
         <nav className="sidebar">
-            <div className="sidebar-header">
-                <h4>🇩🇪 Grenstoerisme</h4>
-            </div>
+            <span className="logo-img-wrapper">
+                <img src={logo} alt="logo" />
+            </span>
+            {/*<div className="sidebar-header">*/}
+            {/*    <h4>🇩🇪 Grenstoerisme</h4>*/}
+            {/*</div>*/}
             <div className="sidebar-links">
                 <ButtonNav path="/" text="🏠 Home" />
 
