@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { studentService, type Student, type StudentInsert } from '../services/students'
-import './BusinessesPage.css' // We hergebruiken gewoon de CSS van het dashboard!
+import './BusinessesPage.css'
 
 export default function StudentsPage() {
     const [students, setStudents] = useState<Student[]>([]) // <--- Hier gebruiken we het Type!
